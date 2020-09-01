@@ -1,7 +1,7 @@
 Syne's Thesia
 =============
 
-![Syne's Thesia](/Screenshots/logo_synesthesia.png?raw=true "Syne'S Thesia")
+![Syne's Thesia](/logo_synesthesia.png?raw=true "Syne's Thesia")
 
 >Synesthesia is a perceptual phenomenon in which stimulation of one sensory or cognitive pathway leads to involuntary experiences in a second sensory or cognitive pathway.
 [Synesthesia - Wikipedia](https://en.wikipedia.org/wiki/Synesthesia)
