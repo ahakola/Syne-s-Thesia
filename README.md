@@ -186,7 +186,7 @@ SY:SetMoverPosition("ElvUF_PartyMover", "TOPLEFT", E.UIParent, "TOPLEFT", 100, -
 
 ## Issues
 
-If you run into any new issues or have an idea how to better achieve what I'm trying to do, don't hesitate to contact me at [Issues](/issues/).
+If you run into any new issues or have an idea how to better achieve what I'm trying to do, don't hesitate to contact me at [Issues](/../../issues/).
 
 #### Known issues
 
