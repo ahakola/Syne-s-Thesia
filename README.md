@@ -13,6 +13,12 @@ Syne's Thesia
 This isn't 1:1 recreation of the *Syne's Edit*, since there has been ton of new features added and some old features removed from the game over the years compared to the era of the original *Syne's Edit*, but I have tried my best to keep the core features and preserve the style of the original UI by reading the original UI's code like Devil reads the Bible and cross-referencing screenshots and counting pixels for hours. Even with all this work put into this project, I couldn't add all of the features the way they were in the original. I also added few small quality of life -changes here and there that weren't in the original edit, but I felt weren't too invading to the spirit of the original.
 
 
+File | Game Version | Minimum ElvUI version
+--- | --- | ---
+`Syne's Thesia 1.0.zip` | 8.3 | 11.00
+`Syne's Thesia 1.1.zip` | 9.0 | 12.00
+
+
 ## Features
 
 Most of these are from *Syne's Edit* and few of them are my own edits.
@@ -104,6 +110,8 @@ SY:SetMoverPosition("ElvUF_PartyMover", "TOPLEFT", E.UIParent, "TOPLEFT", 100, -
 
 
 ## Screenshots
+
+Screenshots are taken in the *Syne's Thesia* 1.0 (WoW 8.3), but it should look similar or even better with later versions.
 
 <details>
 <summary>Target auras</summary>
@@ -212,11 +220,16 @@ This bug has probably something to do with improper API-calls inside the WoW Res
 [string "@FrameXML\FloatingChatFrame.lua"]:2560: in function <FrameXML\FloatingChatFrame.lua:2549>
 ```
 
+**Affected versions:** 1.0, *1.1?*
+
+
 ##### Collapsing empty space reserved for auras on Target unit frame
 
 If you use the primary style for auras on unit frames, the UI reserves huge amount of screen space for debuffs pushing the aura bars really high if there are only few debuffs. In an ideal world the AddOn could collapse the empty rows of aura icon or having different aura styles for friendly and hostile targets making the aura bars come way down when all the lines aren't fully populated.
 
 This was one of the reasons I created the alternative-style, but it has its limitations on how many buffs it can show which is a shame when targeting friendly target.
+
+**Affected versions:** 1.0, *1.1?*
 
 
 ## What was left out

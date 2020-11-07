@@ -80,11 +80,13 @@ end
 
 local function SetFont(obj, font, size, style, r, g, b, sr, sg, sb, sox, soy)
 	--SY:Print("SetFont:", type(obj), font, size, style, r, g, b, sr, sg, sb, sox, soy) -- Debug
-	obj:SetFont(font, size, style)
-	if sr and sg and sb then obj:SetShadowColor(sr, sg, sb) end
-	if sox and soy then obj:SetShadowOffset(sox, soy) end
-	if r and g and b then obj:SetTextColor(r, g, b)
-	elseif r then obj:SetAlpha(r) end
+	if obj then
+		obj:SetFont(font, size, style)
+		if sr and sg and sb then obj:SetShadowColor(sr, sg, sb) end
+		if sox and soy then obj:SetShadowOffset(sox, soy) end
+		if r and g and b then obj:SetTextColor(r, g, b)
+		elseif r then obj:SetAlpha(r) end
+	end
 end
 
 -- Tirisfal
@@ -255,7 +257,7 @@ end
 local glowTex = LSM:Fetch("statusbar", SY.media.glowTex)
 function SY:CreateShadow(f)
 	if f.shadow then return end -- we seriously don't want to create shadow 2 times in a row on the same frame.
-	local shadow = CreateFrame("Frame", nil, f)
+	local shadow = CreateFrame("Frame", nil, f, BackdropTemplateMixin and "BackdropTemplate")
 	shadow:SetFrameLevel(1)
 	shadow:SetFrameStrata(f:GetFrameStrata())
 	--[[
@@ -337,7 +339,7 @@ local function GeneralOptions()
 				order = 20,
 				type = "toggle",
 				name = L["Buff Reminder"],
-				desc = L["This is now the new inner fire warning script for all armors/aspects of a class."],
+				desc = L["This is now the new Inner Fire warning script for all armors/aspects of a class."],
 			},
 			recountHack = {
 				order = 30,

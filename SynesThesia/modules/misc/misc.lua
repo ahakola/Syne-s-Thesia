@@ -6,7 +6,8 @@
 --------------------------------------------------------------------]]--
 local E, L, V, P, G = unpack(ElvUI) --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB, Localize Underscore
 local M = E:GetModule("Misc")
-local THREAT = E:GetModule("Threat")
+--local THREAT = E:GetModule("Threat")
+local THREAT = E:GetModule("DataBars")
 local S = E:GetModule("Skins")
 local SY = E:GetModule("SynesThesia")
 local LSM = LibStub("LibSharedMedia-3.0")
@@ -56,20 +57,25 @@ hooksecurefunc(M, "START_LOOT_ROLL", UpdateRollStyle)
 local function UpdateThreatPosition(self)
 	--SY:Print("UpdateThreatPosition") -- Debug
 
-	local ThreatBar = self.bar
+	--local ThreatBar = self.bar
+	local ThreatBar = self.StatusBars.Threat
 
 	ThreatBar:ClearAllPoints()
 	ThreatBar:SetPoint("CENTER", BottomLine1)
 	ThreatBar:SetParent(BottomLine1)
 end
-hooksecurefunc(THREAT, "UpdatePosition", UpdateThreatPosition)
+--hooksecurefunc(THREAT, "UpdatePosition", UpdateThreatPosition)
+--hooksecurefunc(THREAT, "ThreatBar_Update", UpdateThreatPosition)
 
 local function UpdateThreatStyle(self)
 	--SY:Print("UpdateThreatStyle") -- Debug
 
-	local ThreatBar = self.bar -- ElvUI_ThreatBar
+	--local ThreatBar = self.bar -- ElvUI_ThreatBar
+	local ThreatBar = self.StatusBars.Threat
 
 	--ThreatBar:SetFrameLevel(5)
+	--[[
+	-- Not needed in 9.0
 	ThreatBar:ClearAllPoints()
 	ThreatBar:SetPoint("CENTER", BottomLine1)
 	ThreatBar:SetParent(BottomLine1)
@@ -83,8 +89,14 @@ local function UpdateThreatStyle(self)
 	ThreatBar.title = SY:SetFontString(ThreatBar, ThreatFont, 14, "OUTLINE")
 	ThreatBar.title:SetText(L["Threat on current target:"])
 	ThreatBar.title:SetPoint("RIGHT", ThreatBar, "TOPLEFT", -3, 0)
+	]]
+	
+	-- Don't hide behind the Bottom Gradient!
+	ThreatBar:Raise()
 end
-hooksecurefunc(THREAT, "Initialize", UpdateThreatStyle)
+--hooksecurefunc(THREAT, "Initialize", UpdateThreatStyle)
+hooksecurefunc(THREAT, "ThreatBar", UpdateThreatStyle)
+hooksecurefunc(THREAT, "ThreatBar_Toggle", UpdateThreatStyle)
 
 
 --[[--------------------------------------------------------------------

@@ -54,6 +54,7 @@ P["SY"] = {
 			["mX"] = 150,					-- X offset for the middlebar
 			["mY"] = -50,					-- Y offset for the middlebar
 	},
+	--[[
 	["datatexts"] = {
 		["leftChatDatatextPanel"] = true,
 		["rightChatDatatextPanel"] = true,
@@ -77,6 +78,7 @@ P["SY"] = {
 				["right"] = "Gold",
 			},
 		},
+	]]
 		--[[
 		-- 1 to 8 are below the bottomline
 		["fps_ms"] = 7,						-- show fps and ms on panels
@@ -95,7 +97,7 @@ P["SY"] = {
 		["armor"] = 0,						-- show your armor value against the level mob you are currently targeting
 		["currency"] = 6,					-- show your tracked currency on panels
 		]]
-	},
+	--},
 	["chat"] = {
 		-- My own modifications
 		["timestampsOnRight"] = true,		-- set timestamps to the right side of the chatframe on loot-frame
@@ -114,10 +116,6 @@ local CODING = {
 	"Blazeflack (CodeNameBlaze and ElvUI CustomTweaks)", -- https://www.tukui.org/addons.php?id=2 & TukUI.org
 	"Phanx (CombatText from oUF_Phanx)", -- https://github.com/phanx-wow/oUF_Phanx/blob/master/Elements/CombatText.lua
 	"Vik & Nefarion (Undress-button)", -- https://github.com/ViksUI/ViksUI/blob/master/ViksUI/Modules/Misc/Misc.lua, check SynesThesia\modules\misc\misc.lua for more info
-	"",
-	"Hard working and inspiring creators of TukUI and ElvUI.",
-	"All those whose code I have taken look at and soaked inspiration from over the years."
-	"I would also like to give special thanks to everyone who has helped me directly or indirectly to improve my skills over the years by providing nice coding tips and practices or even full code snippets over the years at TukUI-, WoWInterface- and CurseForge-forums.",
 }
 local tsort = table.sort
 --tsort(DONATORS, function(a,b) return a < b end) --Alphabetize
@@ -135,6 +133,8 @@ for _, testerName in pairs(TESTERS) do
 	TESTER_STRING = TESTER_STRING..LINE_BREAK..testerName
 end
 
+local BONUS_STRING = "I would also like to give special thanks to:\n- Hard working and inspiring creators of TukUI and ElvUI.\n- All those whose code I have taken look at and soaked inspiration from over the years.\n- Everyone who has helped me directly or indirectly to improve my skills over the years by providing nice coding tips and practices or even full code snippets over the years at TukUI-, WoWInterface- and CurseForge-forums."
+
 local function Credits()
 	E.Options.args.SY.args.general.args.spacer = {
 		order = 100,
@@ -149,7 +149,7 @@ local function Credits()
 	E.Options.args.SY.args.general.args.creditsDescription = {
 		order = 120,
 		type = "description",
-		name = L["SY_CREDITS"] .. "\n\n" .. SY:ColorStr(L["Coding:"]) .. CODING_STRING .. "\n\n" .. SY:ColorStr(L["Testing:"]) .. TESTER_STRING .. "\n\n" .. SY:ColorStr(L["Donations:"]) .. DONATOR_STRING,
+		name = L["SY_CREDITS"] .. "\n\n" .. SY:ColorStr(L["Coding:"]) .. CODING_STRING .. "\n\n" .. SY:ColorStr(L["Testing:"]) .. TESTER_STRING .. "\n\n" .. SY:ColorStr(L["Donations:"]) .. DONATOR_STRING .. "\n\n" .. BONUS_STRING,
 	}
 end
 SY.configs["credits"] = Credits

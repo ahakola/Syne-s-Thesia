@@ -29,7 +29,7 @@ L["Donations:"] = true
 -- core\core
 L["Miscellaneous"] = true
 L["Buff Reminder"] = true
-L["This is now the new inner fire warning script for all armors/aspects of a class."] = true
+L["This is now the new Inner Fire warning script for all armors/aspects of a class."] = true
 L["Recount fix"] = true
 L["This hack should fix the problem of Recount not showing up when it should."] = true
 -- Experimental
@@ -92,6 +92,9 @@ L["Installation Complete"] = true
 L["You have completed the installation process.\nIf you need help or wish to report a bug, please go to http://tukui.org"] = true
 L["Please click the button below in order to finalize the process and automatically reload your UI."] = true
 L["Finished"] = true
+L["Syne's Bottom Gradient DataTexts"] = true
+L["Syne's Left DataTexts"] = true
+L["Syne's Right DataTexts"] = true
 
 -- modules\actionbars
 L["ActionBars"] = true
@@ -121,13 +124,17 @@ L["Set timestamps to the right side of the ChatFrame on the RightChatPanel"] = t
 
 -- modules\datatexts
 L["Datatexts"] = true
-L["Bottom Gradient Datatexts"] = true
+--L["Bottom Gradient Datatexts"] = true
+L["Use the ElvUI's own %s -> %s to config DataTexts!"] = true -- L["DataTexts"], L["Panels"]
+
 -- Iterator
+--[[
 L["SynesLeftDataText"] = "Left Chat Datatexts"
 L["SynesRightDataText"] = "Right Chat Datatexts"
 for i = 1, 8 do
 	L["SynesDataText"..i] = format("Bottom Datatext %d", i)
 end
+]]
 
 -- modules\misc
 L["Threat on current target:"] = true
@@ -145,8 +152,8 @@ L["Enables 'ElvUI Role Icons' instead of 'Syne's Edit Role Colors' on unit frame
 L["Alt-style on Target Auras"] = true
 L["Enables 'Alternative-style' on Target unit frame auras."] = true
 L["\n\n(*) Requires reloading of the UI for changes to take effect!"] = true
-L["Castbars"] = true
-L["Castbar-layout"] = true
+L["Cast bars"] = true
+L["Cast bar-layout"] = true
 L["Embed/Detach Player and Target cast bars to/from unit frames."] = true
 L["Embedded cast bars"] = true
 L["Detached cast bars"] = true

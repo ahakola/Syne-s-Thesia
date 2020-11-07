@@ -42,10 +42,13 @@ local function UpdateDataBarsStyle(self)
 	end
 end
 hooksecurefunc(DataBars, "Initialize", UpdateDataBarsStyle)
+--[[
 hooksecurefunc(DataBars, "EnableDisable_AzeriteBar", UpdateDataBarsStyle)
 hooksecurefunc(DataBars, "EnableDisable_ReputationBar", UpdateDataBarsStyle)
 hooksecurefunc(DataBars, "EnableDisable_HonorBar", UpdateDataBarsStyle)
 hooksecurefunc(DataBars, "EnableDisable_ExperienceBar", UpdateDataBarsStyle)
+]]
+hooksecurefunc(DataBars, "UpdateAll", UpdateDataBarsStyle)
 
 -- Tooltip was blocking the text so no benefit from changing the alpha of the text on hover
 --[[

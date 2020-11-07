@@ -54,7 +54,7 @@ function SY:InitializeLayout()
 	SY.BottomLine2 = BottomLine2
 
 	--Create extra panels
-	SY:CreateExtraDataBarPanels()
+	--SY:CreateExtraDataBarPanels() -- Not needed in 9.0, using ElvUI's new custm DTPanels feature instead
 end
 hooksecurefunc(LO, "Initialize", SY.InitializeLayout)
 
@@ -237,6 +237,8 @@ function SY:ToggleDataPanels(forcePVP)
 	end
 end
 
+--[[
+-- Not needed in 9.0, using ElvUI's new custm DTPanels feature instead
 local frame = CreateFrame("Frame")
 frame:SetScript("OnEvent", function(self, event, ...)
 	return self[event] and self[event](self, event, ...)
@@ -246,3 +248,4 @@ frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 function frame:PLAYER_ENTERING_WORLD(event, isInitialLogin, isReloadingUi)
 	SY:ToggleDataPanels()
 end
+]]

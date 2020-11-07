@@ -125,7 +125,8 @@ local function SetupChat()
 	ToggleChatColorNamesByClassGroup(true, "CHANNEL11")
 
 	if E.Chat then
-		E.Chat:PositionChat(true)
+		--E.Chat:PositionChat(true)
+		E.Chat:PositionChats()
 		if E.db["RightChatPanelFaded"] then
 			RightChatToggleButton:Click()
 		end
@@ -550,6 +551,13 @@ local function SetPositions(layout)
 		SY:SetMoverPosition("ReputationBarMover", "TOP", Minimap, "BOTTOM", 0, -11)
 		SY:SetMoverPosition("HonorBarMover", "TOP", Minimap, "BOTTOM", 0, -22)
 		SY:SetMoverPosition("ExperienceBarMover", "TOP", Minimap, "BOTTOM", 0, -33)
+
+		SY:SetMoverPosition("ThreatBarMover", "BOTTOM", E.UIParent, "BOTTOM", 0, 34) -- 34 for 6px size, 35 for 8px size
+
+	--DataTexts
+		SY:SetMoverPosition("DTPanelSynesBottomGradientDataTextMover", "BOTTOM", E.UIParent, "BOTTOM", 0, 8)
+		SY:SetMoverPosition("DTPanelSynesLeftDataTextMover", "BOTTOMLEFT", E.UIParent, "BOTTOMLEFT", 34, 60) -- x = (368 - 300) / 2
+		SY:SetMoverPosition("DTPanelSynesRightDataTextMover", "BOTTOMRIGHT", E.UIParent, "BOTTOMRIGHT", -34, 60) -- x = -(368 - 300) / 2
 
 	--Below Minimap Container
 		SY:SetMoverPosition("BelowMinimapContainerMover", "TOPRIGHT", E.UIParent, "TOPRIGHT", -40, -260)
@@ -1074,6 +1082,72 @@ local function SetupLayout(layout, noDataReset)
 	--[[----------------------------------
 	--	GlobalDB - General
 	--]]----------------------------------
+		-- DataTexts
+		E.global.datatexts.customPanels["SynesBottomGradientDataText"] = E:CopyTable({}, G.datatexts.newPanelInfo)
+		E.global.datatexts.customPanels["SynesBottomGradientDataText"].name = L["Syne's Bottom Gradient DataTexts"]
+		E.global.datatexts.customPanels["SynesBottomGradientDataText"].numPoints = 8
+		E.global.datatexts.customPanels["SynesBottomGradientDataText"].growth = "HORIZONTAL"
+		E.global.datatexts.customPanels["SynesBottomGradientDataText"].width = 940
+		E.global.datatexts.customPanels["SynesBottomGradientDataText"].height = 25
+		E.global.datatexts.customPanels["SynesBottomGradientDataText"].textJustify = "CENTER"
+		E.global.datatexts.customPanels["SynesBottomGradientDataText"].fonts.enable = false
+		E.global.datatexts.customPanels["SynesBottomGradientDataText"].fonts.fontSize = 12
+		E.global.datatexts.customPanels["SynesBottomGradientDataText"].fonts.font = "PT Sans Narrow"
+		E.global.datatexts.customPanels["SynesBottomGradientDataText"].fonts.fontOutline = "OUTLINE"
+		E.global.datatexts.customPanels["SynesBottomGradientDataText"].backdrop = false
+		E.global.datatexts.customPanels["SynesBottomGradientDataText"].panelTransparency = false
+		E.global.datatexts.customPanels["SynesBottomGradientDataText"].mouseover = false
+		E.global.datatexts.customPanels["SynesBottomGradientDataText"].border = false
+		E.global.datatexts.customPanels["SynesBottomGradientDataText"].frameStrata = "LOW"
+		E.global.datatexts.customPanels["SynesBottomGradientDataText"].frameLevel = 1
+		E.global.datatexts.customPanels["SynesBottomGradientDataText"].tooltipXOffset = -17
+		E.global.datatexts.customPanels["SynesBottomGradientDataText"].tooltipYOffset = 4
+		E.global.datatexts.customPanels["SynesBottomGradientDataText"].tooltipAnchor = "ANCHOR_TOPLEFT"
+		E.global.datatexts.customPanels["SynesBottomGradientDataText"].visibility = "[petbattle] hide;show"
+
+		E.global.datatexts.customPanels["SynesLeftDataText"] = E:CopyTable({}, G.datatexts.newPanelInfo)
+		E.global.datatexts.customPanels["SynesLeftDataText"].name = L["Syne's Left DataTexts"]
+		E.global.datatexts.customPanels["SynesLeftDataText"].numPoints = 3
+		E.global.datatexts.customPanels["SynesLeftDataText"].growth = "HORIZONTAL"
+		E.global.datatexts.customPanels["SynesLeftDataText"].width = 300
+		E.global.datatexts.customPanels["SynesLeftDataText"].height = 25
+		E.global.datatexts.customPanels["SynesLeftDataText"].textJustify = "CENTER"
+		E.global.datatexts.customPanels["SynesLeftDataText"].fonts.enable = false
+		E.global.datatexts.customPanels["SynesLeftDataText"].fonts.fontSize = 12
+		E.global.datatexts.customPanels["SynesLeftDataText"].fonts.font = "PT Sans Narrow"
+		E.global.datatexts.customPanels["SynesLeftDataText"].fonts.fontOutline = "OUTLINE"
+		E.global.datatexts.customPanels["SynesLeftDataText"].backdrop = false
+		E.global.datatexts.customPanels["SynesLeftDataText"].panelTransparency = false
+		E.global.datatexts.customPanels["SynesLeftDataText"].mouseover = false
+		E.global.datatexts.customPanels["SynesLeftDataText"].border = false
+		E.global.datatexts.customPanels["SynesLeftDataText"].frameStrata = "LOW"
+		E.global.datatexts.customPanels["SynesLeftDataText"].frameLevel = 1
+		E.global.datatexts.customPanels["SynesLeftDataText"].tooltipXOffset = -17
+		E.global.datatexts.customPanels["SynesLeftDataText"].tooltipYOffset = 4
+		E.global.datatexts.customPanels["SynesLeftDataText"].tooltipAnchor = "ANCHOR_TOPLEFT"
+		E.global.datatexts.customPanels["SynesLeftDataText"].visibility = "[petbattle] hide;show"
+
+		E.global.datatexts.customPanels["SynesRightDataText"] = E:CopyTable({}, G.datatexts.newPanelInfo)
+		E.global.datatexts.customPanels["SynesRightDataText"].name = L["Syne's Right DataTexts"]
+		E.global.datatexts.customPanels["SynesRightDataText"].numPoints = 3
+		E.global.datatexts.customPanels["SynesRightDataText"].growth = "HORIZONTAL"
+		E.global.datatexts.customPanels["SynesRightDataText"].width = 300
+		E.global.datatexts.customPanels["SynesRightDataText"].height = 25
+		E.global.datatexts.customPanels["SynesRightDataText"].textJustify = "CENTER"
+		E.global.datatexts.customPanels["SynesRightDataText"].fonts.enable = false
+		E.global.datatexts.customPanels["SynesRightDataText"].fonts.fontSize = 12
+		E.global.datatexts.customPanels["SynesRightDataText"].fonts.font = "PT Sans Narrow"
+		E.global.datatexts.customPanels["SynesRightDataText"].fonts.fontOutline = "OUTLINE"
+		E.global.datatexts.customPanels["SynesRightDataText"].backdrop = false
+		E.global.datatexts.customPanels["SynesRightDataText"].panelTransparency = false
+		E.global.datatexts.customPanels["SynesRightDataText"].mouseover = false
+		E.global.datatexts.customPanels["SynesRightDataText"].border = false
+		E.global.datatexts.customPanels["SynesRightDataText"].frameStrata = "LOW"
+		E.global.datatexts.customPanels["SynesRightDataText"].frameLevel = 1
+		E.global.datatexts.customPanels["SynesRightDataText"].tooltipXOffset = -17
+		E.global.datatexts.customPanels["SynesRightDataText"].tooltipYOffset = 4
+		E.global.datatexts.customPanels["SynesRightDataText"].tooltipAnchor = "ANCHOR_TOPLEFT"
+		E.global.datatexts.customPanels["SynesRightDataText"].visibility = "[petbattle] hide;show"
 
 
 	--[[----------------------------------
@@ -1090,9 +1164,19 @@ local function SetupLayout(layout, noDataReset)
 		E.db.general.vendorGrays = true
 		E.db.general.bottomPanel = false
 
-		E.db.general.threat.enable = true
-		E.db.general.threat.textSize = 14
-		E.db.general.threat.textOutline = "OUTLINE"
+		--E.db.general.threat.enable = true
+		--E.db.general.threat.textSize = 14
+		--E.db.general.threat.textOutline = "OUTLINE"
+		E.db.databars.threat.enable = true
+		E.db.databars.threat.mouseover = false
+		E.db.databars.threat.clickThrough = false
+		E.db.databars.threat.width = 400
+		E.db.databars.threat.height = 6
+		E.db.databars.threat.orientation = "AUTOMATIC"
+		E.db.databars.threat.reverseFill = false
+		E.db.databars.threat.font = "BigNoodleTitling"
+		E.db.databars.threat.fontSize = 14
+		E.db.databars.threat.fontOutline = "OUTLINE"
 
 		E.db.general.totems.growthDirection = "HORIZONTAL"
 
@@ -1403,6 +1487,7 @@ local function SetupLayout(layout, noDataReset)
 		E.db.datatexts.fontSize = 14
 		E.db.datatexts.fontOutline = "OUTLINE"
 
+		--[[
 		E.db.datatexts.minimapPanels = false
 		E.db.datatexts.leftChatPanel = false
 		E.db.datatexts.rightChatPanel = false
@@ -1412,8 +1497,37 @@ local function SetupLayout(layout, noDataReset)
 		E.db.datatexts.minimapBottom = false
 		E.db.datatexts.minimapBottomLeft = false
 		E.db.datatexts.minimapBottomRight = false
+		]]
 
-		E.db.datatexts.currencies.displayedCurrency = "CORRUPTED_MEMENTOS"
+		--E.db.datatexts.currencies.displayedCurrency = "CORRUPTED_MEMENTOS"
+
+		E.db.datatexts.panels.LeftChatDataPanel.enable = false
+		E.db.datatexts.panels.LeftChatDataPanel.backdrop = false
+
+		E.db.datatexts.panels.RightChatDataPanel.enable = false
+		E.db.datatexts.panels.RightChatDataPanel.backdrop = false
+
+		E.db.datatexts.panels.MinimapPanel.enable = false
+
+		E.db.datatexts.panels["SynesBottomGradientDataText"].enable = true
+		E.db.datatexts.panels["SynesBottomGradientDataText"][1] = "Guild"
+		E.db.datatexts.panels["SynesBottomGradientDataText"][2] = "Friends"
+		E.db.datatexts.panels["SynesBottomGradientDataText"][3] = "QuickJoin"
+		E.db.datatexts.panels["SynesBottomGradientDataText"][4] = "DPS"
+		E.db.datatexts.panels["SynesBottomGradientDataText"][5] = "HPS"
+		E.db.datatexts.panels["SynesBottomGradientDataText"][6] = "CallToArms"
+		E.db.datatexts.panels["SynesBottomGradientDataText"][7] = "Bags"
+		E.db.datatexts.panels["SynesBottomGradientDataText"][8] = "Currencies"
+
+		E.db.datatexts.panels["SynesLeftDataText"].enable = true
+		E.db.datatexts.panels["SynesLeftDataText"][1] = "Talent/Loot Specialization"
+		E.db.datatexts.panels["SynesLeftDataText"][2] = "Durability"
+		E.db.datatexts.panels["SynesLeftDataText"][3] = "Missions"
+
+		E.db.datatexts.panels["SynesRightDataText"].enable = true
+		E.db.datatexts.panels["SynesRightDataText"][1] = "System"
+		E.db.datatexts.panels["SynesRightDataText"][2] = "Time"
+		E.db.datatexts.panels["SynesRightDataText"][3] = "Gold"
 
 
 	--[[----------------------------------
@@ -1753,6 +1867,8 @@ local function SetupLayout(layout, noDataReset)
 				E.db.unitframe.units.target.castbar.iconXOffset = 10
 				E.db.unitframe.units.target.castbar.iconYOffset = -14
 			end
+
+			E.db.unitframe.units.target.CombatIcon.enable = false
 
 			E.db.unitframe.units.target.debuffs.enable = true
 			E.db.unitframe.units.target.debuffs.desaturate = true

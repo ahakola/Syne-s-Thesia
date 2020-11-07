@@ -14,7 +14,7 @@ local tonumber, pairs = tonumber, pairs
 local format = string.format
 
 SY.version = GetAddOnMetadata("SynesThesia", "Version")
-SY.versionMinE = 11.00
+SY.versionMinE = 12.00
 SY.configs = {}
 
 SY.title = "|cff1784d1Syne\'s|r Thesia"

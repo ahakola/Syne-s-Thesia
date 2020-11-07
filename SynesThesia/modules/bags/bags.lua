@@ -28,7 +28,7 @@ function ModifyContainerFrame(self, name, isBank)
 
 	if isBank then
 		--Add stack button back to bank
-		f.stackButton = CreateFrame("Button", name .. "stackButton", f);
+		f.stackButton = CreateFrame("Button", name .. "stackButton", f, BackdropTemplateMixin and "BackdropTemplate");
 		f.stackButton:SetSize(16 + E.Border, 16 + E.Border)
 		f.stackButton:SetTemplate()
 		f.stackButton:SetPoint("RIGHT", f.bagText, "LEFT", -5, E.Border * 2)
@@ -56,7 +56,7 @@ function ModifyContainerFrame(self, name, isBank)
 		f.reagentToggle:SetPoint("RIGHT", f.stackButton, "LEFT", -5, 0)
 	else
 		--Add stack button back to bags
-		f.stackButton = CreateFrame("Button", name .. "stackButton", f);
+		f.stackButton = CreateFrame("Button", name .. "stackButton", f, BackdropTemplateMixin and "BackdropTemplate");
 		f.stackButton:SetSize(16 + E.Border, 16 + E.Border)
 		f.stackButton:SetTemplate()
 		f.stackButton:SetPoint("RIGHT", f.goldText, "LEFT", -5, E.Border * 2)

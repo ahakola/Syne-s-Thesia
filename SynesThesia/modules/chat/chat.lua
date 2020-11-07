@@ -100,6 +100,10 @@ end
 
 
 local function positionEditbox(editbox)
+	if ChatLineLeft2:GetWidth() < LeftChat:GetWidth() then -- 9.0 hacks to get this working again
+		ChatLineLeft2:SetWidth(E:Scale(LeftChat:GetWidth()))
+	end
+
 	editbox:ClearAllPoints()
 	--editbox:SetPoint("TOPRIGHT", ChatLineLeft2, "BOTTOMRIGHT", 0, E:Scale(-4))
 	--editbox:SetPoint("BOTTOMLEFT", ChatLineLeft2, "BOTTOMLEFT", 0, E:Scale(-12))
@@ -118,13 +122,17 @@ local function UpdateChatStyle(self, frame)
 
 	positionEditbox(editbox)
 
+	if not editbox.backdrop then
+		Mixin(editbox, BackdropTemplateMixin)
+	end
+
 	editbox:SetTemplate("Transparent")
 	editbox:SetBackdropColor(0, 0, 0, 0)
 	--editbox:SetBackdropBorderColor(0, 0, 0, 0)
 	editbox:SetBackdropBorderColor(0, 0, 0, .5)
 
 	-- create our own texture for edit box
-	local EditBoxBackground = CreateFrame("frame", chat.."EditBoxBackground", editbox)
+	local EditBoxBackground = CreateFrame("frame", chat.."EditBoxBackground", editbox, BackdropTemplateMixin and "BackdropTemplate")
 	SY:LeftGradient(EditBoxBackground, 1, 1, "LEFT", editbox, "LEFT", 0, 0)
 	EditBoxBackground:ClearAllPoints()
 	EditBoxBackground:SetPoint("TOPRIGHT", ChatLineLeft2, "BOTTOMRIGHT")
@@ -183,7 +191,8 @@ local function UpdateAnchors(self)
 		positionEditbox(editBox)
 	end
 end
-hooksecurefunc(CH, "UpdateAnchors", UpdateAnchors)
+--hooksecurefunc(CH, "UpdateAnchors", UpdateAnchors)
+hooksecurefunc(CH, "UpdateEditboxAnchors", UpdateAnchors)
 
 -- From Syne's Edit
 local function SetupChatFont()	

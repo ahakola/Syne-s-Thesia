@@ -649,7 +649,7 @@ local function UFOptions()
 			castbar = {
 				order = 70,
 				type = "group",
-				name = L["Castbars"],
+				name = L["Cast bars"],
 				guiInline = true,
 				get = function(info) return E.db.SY.unitframes[ info[#info] ] end,
 				set = function(info, value) E.db.SY.unitframes[ info[#info] ] = value; updateCastBarSetup() end,
@@ -657,7 +657,7 @@ local function UFOptions()
 					castbarlayout = {
 						order = 10,
 						type = "select",
-						name = L["Castbar-layout"],
+						name = L["Cast bar-layout"],
 						desc = L["Embed/Detach Player and Target cast bars to/from unit frames."],
 						values = {
 							[1] = L["Embedded cast bars"],

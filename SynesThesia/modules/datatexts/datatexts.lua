@@ -17,6 +17,8 @@ local NONE = NONE
 --Global variables that we don't cache, list them here for mikk's FindGlobals script
 -- GLOBALS: LeftMiniPanel, Minimap
 
+--[[
+-- Replaced by ElvUI's Custom DTPanels feature in 9.0
 function SY:LoadDataTexts()
 	local db = E.db.SY.datatexts
 
@@ -58,17 +60,15 @@ function frame:UPDATE_BATTLEFIELD_SCORE(event)
 	for i = 1, GetNumBattlefieldScores() do
 		local name, killingBlows, honorableKills, deaths, honorGained, faction, race, class, classToken, damageDone, healingDone, bgRating, ratingChange, preMatchMMR, mmrChange, talentSpec = GetBattlefieldScore(i)
 		if name == E.myname then
-			--[[
-			local val, title
+			--local val, title
 
-			if healingDone > damageDone then
-				val = healingDone
-				title = _G.SHOW_COMBAT_HEALING
-			else
-				val = damageDone
-				title = _G.DAMAGE
-			end
-			]]
+			--if healingDone > damageDone then
+			--	val = healingDone
+			--	title = _G.SHOW_COMBAT_HEALING
+			--else
+			--	val = damageDone
+			--	title = _G.DAMAGE
+			--end
 
 			local lbg = SY.SynesRightBGDataText
 			local rbg = SY.SynesRightBGDataText
@@ -109,6 +109,7 @@ local function DTBG()
 end
 SLASH_DTBG1 = "/dtbg"
 SlashCmdList["DTBG"] = DTBG
+]]
 
 
 --Datatext Options
@@ -123,6 +124,14 @@ local function DatatextOptions()
 				type = "header",
 				name = SY:ColorStr(L["Datatexts"]),
 			},
+			notify = {
+				order = 20,
+				type = "description",
+				name = format(L["Use the ElvUI's own %s -> %s to config DataTexts!"], SY:ColorStr(L["DataTexts"]), SY:ColorStr(L["Panels"])),
+			},
+		},
+	}
+--[[
 			panels = {
 				order = 20,
 				type = "group",
@@ -132,12 +141,12 @@ local function DatatextOptions()
 			},
 		},
 	}
-	
 	local datatexts = {}
 	for name, _ in pairs(DT.RegisteredDataTexts) do
 		datatexts[name] = name
 	end
 	datatexts[""] = NONE
+]]	
 	
 --[[
 	local table = E.Options.args.SY.args.config.args.datatexts.args.panels.args
@@ -173,7 +182,7 @@ local function DatatextOptions()
 		end
 	end
 ]]
-
+--[[
 	local table = E.Options.args.SY.args.datatexts.args
 	local i = 2
 	for pointLoc, tab in pairs(P.SY.datatexts.panels) do
@@ -206,5 +215,6 @@ local function DatatextOptions()
 			}						
 		end
 	end
+]]
 end
 SY.configs["datatexts"] = DatatextOptions
