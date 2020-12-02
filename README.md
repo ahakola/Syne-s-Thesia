@@ -16,7 +16,8 @@ This isn't 1:1 recreation of the *Syne's Edit*, since there has been ton of new 
 File | Game Version | Minimum ElvUI version
 --- | --- | ---
 `Syne's Thesia 1.0.zip` | 8.3 | 11.00
-`Syne's Thesia 1.1.zip` | 9.0 | 12.00
+`Syne's Thesia 1.1.zip` | 9.0.1 | 12.00
+`Syne's Thesia 1.2.zip` | 9.0.2 | 12.00
 
 
 ## Features
@@ -220,7 +221,7 @@ This bug has probably something to do with improper API-calls inside the WoW Res
 [string "@FrameXML\FloatingChatFrame.lua"]:2560: in function <FrameXML\FloatingChatFrame.lua:2549>
 ```
 
-**Affected versions:** 1.0, *1.1?*
+**Affected versions:** 1.0-
 
 
 ##### Collapsing empty space reserved for auras on Target unit frame
@@ -229,7 +230,7 @@ If you use the primary style for auras on unit frames, the UI reserves huge amou
 
 This was one of the reasons I created the alternative-style, but it has its limitations on how many buffs it can show which is a shame when targeting friendly target.
 
-**Affected versions:** 1.0, *1.1?*
+**Affected versions:** 1.0-
 
 
 ## What was left out

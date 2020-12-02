@@ -100,8 +100,12 @@ end
 
 
 local function positionEditbox(editbox)
-	if ChatLineLeft2:GetWidth() < LeftChat:GetWidth() then -- 9.0 hacks to get this working again
+	if ChatLineLeft2:GetWidth() < LeftChat:GetWidth() then -- 9.0 hacks to get these working again
+		ChatLineLeft1:SetWidth(E:Scale(LeftChat:GetWidth()))
 		ChatLineLeft2:SetWidth(E:Scale(LeftChat:GetWidth()))
+
+		ChatLineRight1:SetWidth(E:Scale(RightChat:GetWidth()))
+		ChatLineRight2:SetWidth(E:Scale(RightChat:GetWidth()))
 	end
 
 	editbox:ClearAllPoints()

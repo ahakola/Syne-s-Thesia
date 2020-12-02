@@ -111,7 +111,7 @@ if (buffs and buffs[1]) then
 		end
 	end
 	
-	local frame = CreateFrame("Frame", _, UIParent)
+	local frame = CreateFrame("Frame", _, UIParent, BackdropTemplateMixin and "BackdropTemplate")
 	
 	frame.icon = frame:CreateTexture(nil, "OVERLAY")
 	frame.icon:SetPoint("CENTER")
