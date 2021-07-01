@@ -66,7 +66,7 @@ Also at least bags and bank, data bars, mirror bars, tooltips, threat bar and so
 
 ## Requirements and installation
 
-*Syne's Thesia* has been developed and tested only with *ElvUI* versions `11.27` - `11.372`, but for best results, use only with WoW patch 8.3 and the latest suitable version of *ElvUI*.
+*Syne's Thesia* has been developed with *ElvUI* versions `11.27` - `11.372`, with WoW patch 8.3, but I have checked the compatibility and made small fixes with newer WoW patches. You should always use the latest version of *ElvUI* and you can check the release table for latest tested WoW patch.
 
 1. If you haven't completed your *ElvUI* installation yet, go through it first (you can just press `Continue`-button on all the steps and press the `Finished`-button at the last step).
 2. Installer should show up after login/*ElvUI* installation.
