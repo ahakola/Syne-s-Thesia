@@ -30,10 +30,10 @@ function SY:InitializeLayout()
 	barBG:SetPoint("BOTTOM", E.UIParent, "BOTTOM", 0, E:Scale(44))
 
 	if E.db.SY.actionbar.smallbottom then
-		barBG:SetWidth((E.db.actionbar.bar1.buttonsize * 12) + (E.db.actionbar.bar1.buttonspacing * 13))
+		barBG:SetWidth((E.db.actionbar.bar1.buttonSize * 12) + (E.db.actionbar.bar1.buttonSpacing * 13))
 		barBG:SetHeight(SY.CalculateBarBGHeight())
 	else
-		barBG:SetWidth((E.db.actionbar.bar1.buttonsize * 22) + (E.db.actionbar.bar1.buttonspacing * 23))
+		barBG:SetWidth((E.db.actionbar.bar1.buttonSize * 22) + (E.db.actionbar.bar1.buttonSpacing * 23))
 		barBG:SetHeight(SY.CalculateBarBGHeight())
 	end
 
@@ -44,7 +44,7 @@ function SY:InitializeLayout()
 	local BottomLine1 = CreateFrame("Frame", "BottomLine1", E.UIParent)
 	SY:CenterGradientH(BottomLine1, WorldFrame:GetWidth(), 8, "TOP", barBG, "BOTTOM" , 0, E:Scale(-3))
 
-	local w = 480 + ((E.db.actionbar.bar1.buttonsize - 27) * 12) -- Original size of the bar, but we use bigger buttonsize so we extend the bar a bit (this should be +60px)
+	local w = 480 + ((E.db.actionbar.bar1.buttonSize - 27) * 12) -- Original size of the bar, but we use bigger buttonsize so we extend the bar a bit (this should be +60px)
 	local BottomLine2 = CreateFrame("Frame", "BottomLine2", E.UIParent)
 	SY:CenterGradientH(BottomLine2, E:Scale(w), 8, "BOTTOM", barBG, "TOP" , 0, E:Scale(3))
 
