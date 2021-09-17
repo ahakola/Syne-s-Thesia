@@ -381,35 +381,38 @@ end)
 		end
 	end
 ]]--
-local SPELL_POWER_MANA = Enum.PowerType.Mana
-local flashFrame = ElvUF_Player.Name
-ElvUF.Tags.Events["manaflash"] = "UNIT_POWER_FREQUENT UNIT_MAXPOWER"
-ElvUF.Tags.Methods["manaflash"] = function(unit)
-	if unit ~= "player" or UnitIsDeadOrGhost("player") or UnitPowerType("player") ~= SPELL_POWER_MANA then
-		if UIFrameIsFlashing(flashFrame) then
-			UIFrameFlashStop(flashFrame)
+local function AddFlashFrame(frame)
+	local SPELL_POWER_MANA = Enum.PowerType.Mana
+	local flashFrame = ElvUF_Player.Name
+	ElvUF.Tags.Events["manaflash"] = "UNIT_POWER_FREQUENT UNIT_MAXPOWER"
+	ElvUF.Tags.Methods["manaflash"] = function(unit)
+		if unit ~= "player" or UnitIsDeadOrGhost("player") or UnitPowerType("player") ~= SPELL_POWER_MANA then
+			if UIFrameIsFlashing(flashFrame) then
+				UIFrameFlashStop(flashFrame)
+			end
+
+			return ""
 		end
+		--SY:Print("manaflash!", tostring(UIFrameIsFlashing(flashFrame))) -- Debug
 
-		return ""
-	end
-	--SY:Print("manaflash!", tostring(UIFrameIsFlashing(flashFrame))) -- Debug
+		local percMana = UnitPower("player", SPELL_POWER_MANA) / UnitPowerMax("player", SPELL_POWER_MANA) * 100
 
-	local percMana = UnitPower("player", SPELL_POWER_MANA) / UnitPowerMax("player", SPELL_POWER_MANA) * 100
+		if percMana <= E.db.SY.unitframes.lowThreshold then
+			if not UIFrameIsFlashing(flashFrame) then
+				UIFrameFlash(flashFrame, .3, .3, -1, true, 0, 0)
+			end
+			
+			return "|cffaf5050"..L["LOW MANA"].."|r"
+		else
+			if UIFrameIsFlashing(flashFrame) then
+				UIFrameFlashStop(flashFrame)
+			end
 
-	if percMana <= E.db.SY.unitframes.lowThreshold then
-		if not UIFrameIsFlashing(flashFrame) then
-			UIFrameFlash(flashFrame, .3, .3, -1, true, 0, 0)
+			return ""
 		end
-		
-		return "|cffaf5050"..L["LOW MANA"].."|r"
-	else
-		if UIFrameIsFlashing(flashFrame) then
-			UIFrameFlashStop(flashFrame)
-		end
-
-		return ""
 	end
 end
+hooksecurefunc(UF, "Construct_PlayerFrame", AddFlashFrame)
 
 
 --Unitframes options

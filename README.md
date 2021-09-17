@@ -19,6 +19,7 @@ File | Game Version | Minimum ElvUI version
 `Syne's Thesia 1.1.zip` | 9.0.1 | 12.00
 `Syne's Thesia 1.2.zip` | 9.0.2 | 12.00
 `Syne's Thesia 1.3.zip` | 9.1.0 | 12.00
+`Syne's Thesia 1.4.zip` | 9.1.0 | 12.00
 
 
 ## Features
