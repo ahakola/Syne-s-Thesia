@@ -12,6 +12,7 @@
 --	is not satisfied with the default settings set in this edit.
 --------------------------------------------------------------------]]--
 local E, L, V, P, G, _ = unpack(ElvUI) --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB, Localize Underscore
+local DT = E:GetModule("DataTexts")
 local SY = E:GetModule("SynesThesia")
 
 --Cache global variables
@@ -1509,7 +1510,7 @@ local function SetupLayout(layout, noDataReset)
 
 		E.db.datatexts.panels.MinimapPanel.enable = false
 
-		E.db.datatexts.panels["SynesBottomGradientDataText"].enable = true
+		E.db.datatexts.panels["SynesBottomGradientDataText"] = { enable = true }
 		E.db.datatexts.panels["SynesBottomGradientDataText"][1] = "Guild"
 		E.db.datatexts.panels["SynesBottomGradientDataText"][2] = "Friends"
 		E.db.datatexts.panels["SynesBottomGradientDataText"][3] = "QuickJoin"
@@ -1519,15 +1520,20 @@ local function SetupLayout(layout, noDataReset)
 		E.db.datatexts.panels["SynesBottomGradientDataText"][7] = "Bags"
 		E.db.datatexts.panels["SynesBottomGradientDataText"][8] = "Currencies"
 
-		E.db.datatexts.panels["SynesLeftDataText"].enable = true
+		E.db.datatexts.panels["SynesLeftDataText"] = { enable = true }
 		E.db.datatexts.panels["SynesLeftDataText"][1] = "Talent/Loot Specialization"
 		E.db.datatexts.panels["SynesLeftDataText"][2] = "Durability"
 		E.db.datatexts.panels["SynesLeftDataText"][3] = "Missions"
 
-		E.db.datatexts.panels["SynesRightDataText"].enable = true
+		E.db.datatexts.panels["SynesRightDataText"] = { enable = true }
 		E.db.datatexts.panels["SynesRightDataText"][1] = "System"
 		E.db.datatexts.panels["SynesRightDataText"][2] = "Time"
 		E.db.datatexts.panels["SynesRightDataText"][3] = "Gold"
+
+		-- Prevent errors during the installation when setting up custom DTPanels
+		DT:BuildPanelFrame("SynesBottomGradientDataText")
+		DT:BuildPanelFrame("SynesLeftDataText")
+		DT:BuildPanelFrame("SynesRightDataText")
 
 
 	--[[----------------------------------

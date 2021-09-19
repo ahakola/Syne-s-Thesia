@@ -13,7 +13,7 @@ local addon, ns = ...
 local tonumber, pairs = tonumber, pairs
 local format = string.format
 
-SY.version = GetAddOnMetadata("SynesThesia", "Version")
+SY.version = tonumber(GetAddOnMetadata("SynesThesia", "Version"))
 SY.versionMinE = 12.00
 SY.configs = {}
 
