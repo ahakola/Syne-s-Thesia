@@ -12,6 +12,7 @@
 --	is not satisfied with the default settings set in this edit.
 --------------------------------------------------------------------]]--
 local E, L, V, P, G, _ = unpack(ElvUI) --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB, Localize Underscore
+local CH = E:GetModule("Chat")
 local DT = E:GetModule("DataTexts")
 local SY = E:GetModule("SynesThesia")
 
@@ -64,36 +65,37 @@ local MAX_PAGE = 8
 local function SetupChat()
 	-- Original Syne's Edit had 3rd tab on LeftChat and it was called 'Spam' containing channels 'LookingForGroup' and 'GuildRecruitment' (which doesn't exist anymore?).
 	-- 'Loot' was the 4th tab, but we skip the spam alltogether since those channels aren't relevant anymore and put 'Loot / Trade' in 3rd tab instead.
+	-- In 9.0 VoiceChat or TTS (?) takes over ChatFrame3 so we need to put the 'Loot / Trade' back to Chatframe4?
 	FCF_ResetChatWindows()
-	FCF_SetLocked(ChatFrame1, 1)
-	FCF_DockFrame(ChatFrame2)
-	FCF_SetLocked(ChatFrame2, 1)
+	FCF_SetLocked(_G.ChatFrame1, 1)
+	FCF_DockFrame(_G.ChatFrame2)
+	FCF_SetLocked(_G.ChatFrame2, 1)
 
 	FCF_OpenNewWindow(LOOT)
-	FCF_UnDockFrame(ChatFrame3)
-	FCF_SetLocked(ChatFrame3, 1)
-	ChatFrame3:Show()
+	FCF_UnDockFrame(_G.ChatFrame4)
+	FCF_SetLocked(_G.ChatFrame4, 1)
+	ChatFrame4:Show()
 
 	-- Set up the General chat frame to filter out stuff shown in the Loot chat frame
-	ChatFrame_RemoveChannel(ChatFrame1, "Trade")
-	ChatFrame_RemoveMessageGroup(ChatFrame1, "COMBAT_XP_GAIN")
-	ChatFrame_RemoveMessageGroup(ChatFrame1, "COMBAT_HONOR_GAIN")
-	ChatFrame_RemoveMessageGroup(ChatFrame1, "COMBAT_FACTION_CHANGE")
-	ChatFrame_RemoveMessageGroup(ChatFrame1, "SKILL")
-	ChatFrame_RemoveMessageGroup(ChatFrame1, "LOOT")
-	ChatFrame_RemoveMessageGroup(ChatFrame1, "CURRENCY")
-	ChatFrame_RemoveMessageGroup(ChatFrame1, "MONEY")
+	ChatFrame_RemoveChannel(_G.ChatFrame1, "Trade")
+	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, "COMBAT_XP_GAIN")
+	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, "COMBAT_HONOR_GAIN")
+	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, "COMBAT_FACTION_CHANGE")
+	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, "SKILL")
+	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, "LOOT")
+	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, "CURRENCY")
+	ChatFrame_RemoveMessageGroup(_G.ChatFrame1, "MONEY")
 
 	-- Set up the Loot chat frame
-	ChatFrame_RemoveAllMessageGroups(ChatFrame3)
-	ChatFrame_AddChannel(ChatFrame3, "Trade")
-	ChatFrame_AddMessageGroup(ChatFrame3, "COMBAT_XP_GAIN")
-	ChatFrame_AddMessageGroup(ChatFrame3, "COMBAT_HONOR_GAIN")
-	ChatFrame_AddMessageGroup(ChatFrame3, "COMBAT_FACTION_CHANGE")
-	ChatFrame_AddMessageGroup(ChatFrame3, "SKILL")
-	ChatFrame_AddMessageGroup(ChatFrame3, "LOOT")
-	ChatFrame_AddMessageGroup(ChatFrame3, "CURRENCY")
-	ChatFrame_AddMessageGroup(ChatFrame3, "MONEY")
+	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame4)
+	ChatFrame_AddChannel(_G.ChatFrame4, "Trade")
+	ChatFrame_AddMessageGroup(_G.ChatFrame4, "COMBAT_XP_GAIN")
+	ChatFrame_AddMessageGroup(_G.ChatFrame4, "COMBAT_HONOR_GAIN")
+	ChatFrame_AddMessageGroup(_G.ChatFrame4, "COMBAT_FACTION_CHANGE")
+	ChatFrame_AddMessageGroup(_G.ChatFrame4, "SKILL")
+	ChatFrame_AddMessageGroup(_G.ChatFrame4, "LOOT")
+	ChatFrame_AddMessageGroup(_G.ChatFrame4, "CURRENCY")
+	ChatFrame_AddMessageGroup(_G.ChatFrame4, "MONEY")
 
 	-- Enable classcolor automatically on login and on each character without doing /configure each time.
 	ToggleChatColorNamesByClassGroup(true, "SAY")
@@ -137,13 +139,17 @@ local function SetupChat()
 		end
 	end
 
-	for i = 1, NUM_CHAT_WINDOWS do
-		local frame = _G[format("ChatFrame%s", i)]
+	--for i = 1, NUM_CHAT_WINDOWS do
+	--	local frame = _G[format("ChatFrame%s", i)]
+	for _, name in ipairs(_G.CHAT_FRAMES) do
+		local frame = _G[name]
 		local chatFrameId = frame:GetID()
 		local chatName = FCF_GetChatWindowInfo(chatFrameId)
 
+		CH:FCFTab_UpdateColors(CH:GetTab(_G[name]))
+
 		-- move general bottom left
-		if i == 1 then
+		if chatFrameId == 1 then
 			frame:ClearAllPoints()
 			if LeftChat then
 				frame:SetPoint("BOTTOMLEFT", LeftChat, "BOTTOMLEFT", E:Scale(4), 0)
@@ -151,7 +157,11 @@ local function SetupChat()
 			else
 				frame:Point("BOTTOMLEFT", _G.LeftChatToggleButton, "TOPLEFT", 1, 3)
 			end
-		elseif i == 3 then
+		elseif chatFrameId == 3 then
+			VoiceTranscriptionFrame_UpdateVisibility(frame)
+			VoiceTranscriptionFrame_UpdateVoiceTab(frame)
+			VoiceTranscriptionFrame_UpdateEditBox(frame)
+		elseif chatFrameId == 4 then
 			frame:ClearAllPoints()
 			if RightChat then
 				frame:SetPoint("BOTTOMLEFT", RightChat, "BOTTOMLEFT", E:Scale(4), 0)
@@ -169,11 +179,11 @@ local function SetupChat()
 		FCF_SetChatWindowFontSize(nil, frame, 13)
 
 		-- rename chat windows
-		if i == 1 then
+		if chatFrameId == 1 then
 			FCF_SetWindowName(frame, GENERAL)
-		elseif i == 2 then
+		elseif chatFrameId == 2 then
 			FCF_SetWindowName(frame, GUILD_EVENT_LOG)
-		elseif i == 3 then
+		elseif chatFrameId == 4 then
 			FCF_SetWindowName(frame, LOOT.." / "..TRADE)
 		end
 	end
@@ -261,8 +271,10 @@ local function SetupCVars()
 end
 
 local function SetupColors(theme) -- classic, default (aka dark), class
+	local classColor = E.myclass == "PRIEST" and E.PriestColors or RAID_CLASS_COLORS[E.myclass]
+
 	E.private.theme = theme
-	E.db.SY.general.darkTheme = (theme == "default")
+	--E.db.SY.general.darkTheme = (theme == "default")
 
 	-- Per Theme Settings
 	--if E.db.SY.general.darkTheme then
@@ -312,12 +324,12 @@ local function SetupColors(theme) -- classic, default (aka dark), class
 
 	E.db.unitframe.colors.castClassColor = (theme == "class")
 
-
 	-- Value Color
 	if theme == "class" then
 		E.db.general.valuecolor = E:GetColor(classColor.r, classColor.b, classColor.g)
 	else
-		E.db.general.valuecolor = { r = 254/255, g = 123/255, b = 44/255 }
+		E.db.general.valuecolor = { r = 0, g = 179/255, b = 1 }
+		--E.db.general.valuecolor = { r = 254/255, g = 123/255, b = 44/255 }
 		--E.db.general.valuecolor = { r = 0, g = .8, b = 1, a = 1 }
 		--E.db.general.valuecolor = { r = 0, g = 1, b = 0, a = 1 }
 	end
@@ -1076,7 +1088,9 @@ function SY.DPSLayout(layout)
 end
 
 local function SetupLayout(layout, noDataReset)
+	local colorScheme = E.private.theme
 	E.db = E:CopyTable(E.db, P)
+	SetupColors(colorScheme) -- Don't overwrite the colors we just set up in previous step! Lazy way of fixing this issue
 	local classColor = E.myclass == "PRIEST" and E.PriestColors or RAID_CLASS_COLORS[E.myclass]
 
 	--Set up various settings shared across all layouts
@@ -2697,9 +2711,9 @@ SY.PluginInstaller = {
 			PluginInstallFrame.Option2:Show()
 			PluginInstallFrame.Option2:SetScript("OnClick", function() SetupColors("default") end)
 			PluginInstallFrame.Option2:SetText(L["Dark"])
-			--PluginInstallFrame.Option3:Show()
-			--PluginInstallFrame.Option3:SetScript("OnClick", function() SetupColors("class") end)
-			--PluginInstallFrame.Option3:SetText(CLASS)
+			PluginInstallFrame.Option3:Show()
+			PluginInstallFrame.Option3:SetScript("OnClick", function() SetupColors("class") end)
+			PluginInstallFrame.Option3:SetText(CLASS)
 		end,
 		[5] = function()
 			PluginInstallFrame.SubTitle:SetText(L["Layouts"])
