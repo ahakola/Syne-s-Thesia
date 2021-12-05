@@ -12,6 +12,7 @@ Syne's Thesia
 
 ## Changelog
 
+- 1.8 - Fix the Stack-button related errors with Bank
 - 1.7 - 9.1.5 .toc bump
 - 1.6 - Fix colors getting overwritten during the layout selection and fix the "Loot" -chatframe (installation step for this has been broken probably since 9.0)
 - 1.5 - Fix the DT bar related errors during installation

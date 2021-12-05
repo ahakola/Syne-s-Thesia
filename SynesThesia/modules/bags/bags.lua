@@ -84,4 +84,4 @@ function ModifyContainerFrame(self, name, isBank)
 		f.sortButton:SetPoint("RIGHT", f.stackButton, "LEFT", -5, 0)
 	end
 end
-hooksecurefunc(B, "ConstructContainerFrame", ModifyContainerFrame)
+--hooksecurefunc(B, "ConstructContainerFrame", ModifyContainerFrame) -- ElvUI added this (back) at some point in 9.1.5?
