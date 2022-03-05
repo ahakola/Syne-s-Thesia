@@ -1652,46 +1652,48 @@ local function SetupLayout(layout, noDataReset)
 		end
 
 		-- Nameplate Filters
+		-- E.global.nameplate -> E.global.nameplates in ElvUI 12.60 on Jan 18, 2022 ?
+
 		-- Style
-		E.global.nameplate.filters["SyneStyle"] = E:CopyTable(E.global.nameplate.filters["SyneStyle"], E.StyleFilterDefaults)
-		E.global.nameplate.filters["SyneStyle"].triggers.notTarget = true
+		E.global.nameplates.filters["SyneStyle"] = E:CopyTable(E.global.nameplates.filters["SyneStyle"], E.StyleFilterDefaults)
+		E.global.nameplates.filters["SyneStyle"].triggers.notTarget = true
 
-		E.global.nameplate.filters["SyneStyle"].triggers.nameplateType.enable = true
-		E.global.nameplate.filters["SyneStyle"].triggers.nameplateType.friendlyPlayer = true
-		E.global.nameplate.filters["SyneStyle"].triggers.nameplateType.friendlyNPC = true
+		E.global.nameplates.filters["SyneStyle"].triggers.nameplateType.enable = true
+		E.global.nameplates.filters["SyneStyle"].triggers.nameplateType.friendlyPlayer = true
+		E.global.nameplates.filters["SyneStyle"].triggers.nameplateType.friendlyNPC = true
 
-		E.global.nameplate.filters["SyneStyle"].actions.nameOnly = true
+		E.global.nameplates.filters["SyneStyle"].actions.nameOnly = true
 
 		-- Hide in Instances
-		E.global.nameplate.filters["SyneHide"] = E:CopyTable(E.global.nameplate.filters["SyneHide"], E.StyleFilterDefaults)
-		E.global.nameplate.filters["SyneHide"].triggers.nameplateType.enable = true
-		E.global.nameplate.filters["SyneHide"].triggers.nameplateType.friendlyPlayer = true
-		E.global.nameplate.filters["SyneHide"].triggers.nameplateType.friendlyNPC = true
+		E.global.nameplates.filters["SyneHide"] = E:CopyTable(E.global.nameplates.filters["SyneHide"], E.StyleFilterDefaults)
+		E.global.nameplates.filters["SyneHide"].triggers.nameplateType.enable = true
+		E.global.nameplates.filters["SyneHide"].triggers.nameplateType.friendlyPlayer = true
+		E.global.nameplates.filters["SyneHide"].triggers.nameplateType.friendlyNPC = true
 
-		E.global.nameplate.filters["SyneHide"].triggers.instanceType.none = false
-		E.global.nameplate.filters["SyneHide"].triggers.instanceType.scenario = false
-		E.global.nameplate.filters["SyneHide"].triggers.instanceType.party = true
-		E.global.nameplate.filters["SyneHide"].triggers.instanceType.raid = true
-		E.global.nameplate.filters["SyneHide"].triggers.instanceType.arena = false
-		E.global.nameplate.filters["SyneHide"].triggers.instanceType.pvp = false
+		E.global.nameplates.filters["SyneHide"].triggers.instanceType.none = false
+		E.global.nameplates.filters["SyneHide"].triggers.instanceType.scenario = false
+		E.global.nameplates.filters["SyneHide"].triggers.instanceType.party = true
+		E.global.nameplates.filters["SyneHide"].triggers.instanceType.raid = true
+		E.global.nameplates.filters["SyneHide"].triggers.instanceType.arena = false
+		E.global.nameplates.filters["SyneHide"].triggers.instanceType.pvp = false
 
-		E.global.nameplate.filters["SyneHide"].triggers.instanceDifficulty.dungeon.normal = true
-		E.global.nameplate.filters["SyneHide"].triggers.instanceDifficulty.dungeon.heroic = true
-		E.global.nameplate.filters["SyneHide"].triggers.instanceDifficulty.dungeon.mythic = true
-		E.global.nameplate.filters["SyneHide"].triggers.instanceDifficulty.dungeon["mythic+"] = true
-		E.global.nameplate.filters["SyneHide"].triggers.instanceDifficulty.dungeon.timewalking = true
+		E.global.nameplates.filters["SyneHide"].triggers.instanceDifficulty.dungeon.normal = true
+		E.global.nameplates.filters["SyneHide"].triggers.instanceDifficulty.dungeon.heroic = true
+		E.global.nameplates.filters["SyneHide"].triggers.instanceDifficulty.dungeon.mythic = true
+		E.global.nameplates.filters["SyneHide"].triggers.instanceDifficulty.dungeon["mythic+"] = true
+		E.global.nameplates.filters["SyneHide"].triggers.instanceDifficulty.dungeon.timewalking = true
 
-		E.global.nameplate.filters["SyneHide"].triggers.instanceDifficulty.raid.lfr = true
-		E.global.nameplate.filters["SyneHide"].triggers.instanceDifficulty.raid.normal = true
-		E.global.nameplate.filters["SyneHide"].triggers.instanceDifficulty.raid.heroic = true
-		E.global.nameplate.filters["SyneHide"].triggers.instanceDifficulty.raid.mythic = true
-		E.global.nameplate.filters["SyneHide"].triggers.instanceDifficulty.raid.timewalking = true
-		E.global.nameplate.filters["SyneHide"].triggers.instanceDifficulty.raid.legacy10normal = true
-		E.global.nameplate.filters["SyneHide"].triggers.instanceDifficulty.raid.legacy25normal = true
-		E.global.nameplate.filters["SyneHide"].triggers.instanceDifficulty.raid.legacy10heroic = true
-		E.global.nameplate.filters["SyneHide"].triggers.instanceDifficulty.raid.legacy25heroic = true
+		E.global.nameplates.filters["SyneHide"].triggers.instanceDifficulty.raid.lfr = true
+		E.global.nameplates.filters["SyneHide"].triggers.instanceDifficulty.raid.normal = true
+		E.global.nameplates.filters["SyneHide"].triggers.instanceDifficulty.raid.heroic = true
+		E.global.nameplates.filters["SyneHide"].triggers.instanceDifficulty.raid.mythic = true
+		E.global.nameplates.filters["SyneHide"].triggers.instanceDifficulty.raid.timewalking = true
+		E.global.nameplates.filters["SyneHide"].triggers.instanceDifficulty.raid.legacy10normal = true
+		E.global.nameplates.filters["SyneHide"].triggers.instanceDifficulty.raid.legacy25normal = true
+		E.global.nameplates.filters["SyneHide"].triggers.instanceDifficulty.raid.legacy10heroic = true
+		E.global.nameplates.filters["SyneHide"].triggers.instanceDifficulty.raid.legacy25heroic = true
 
-		E.global.nameplate.filters["SyneHide"].actions.hide = true
+		E.global.nameplates.filters["SyneHide"].actions.hide = true
 
 		-- Enable Filters
 		E.db.nameplates.filters["SyneStyle"] = {
