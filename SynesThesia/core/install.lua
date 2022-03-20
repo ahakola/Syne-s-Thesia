@@ -326,13 +326,16 @@ local function SetupColors(theme) -- classic, default (aka dark), class
 
 	-- Value Color
 	if theme == "class" then
-		E.db.general.valuecolor = E:GetColor(classColor.r, classColor.b, classColor.g)
+		E.db.general.valuecolor = E:GetColor(classColor.r, classColor.g, classColor.b) -- Was RBG instead of RGB! Fixed in 1.10
 	else
 		E.db.general.valuecolor = { r = 0, g = 179/255, b = 1 }
 		--E.db.general.valuecolor = { r = 254/255, g = 123/255, b = 44/255 }
 		--E.db.general.valuecolor = { r = 0, g = .8, b = 1, a = 1 }
 		--E.db.general.valuecolor = { r = 0, g = 1, b = 0, a = 1 }
 	end
+
+	-- Color Debug:
+	--SY:Print("Theme: %s, Class: %s - %.2f, %.2f, %.2f (%s)", theme, E.myclass, classColor.r, classColor.g, classColor.b, tostring((theme == "class")))
 
 	E:UpdateStart(true, true)
 end
@@ -1091,7 +1094,7 @@ local function SetupLayout(layout, noDataReset)
 	local colorScheme = E.private.theme
 	E.db = E:CopyTable(E.db, P)
 	SetupColors(colorScheme) -- Don't overwrite the colors we just set up in previous step! Lazy way of fixing this issue
-	local classColor = E.myclass == "PRIEST" and E.PriestColors or RAID_CLASS_COLORS[E.myclass]
+	--local classColor = E.myclass == "PRIEST" and E.PriestColors or RAID_CLASS_COLORS[E.myclass]
 
 	--Set up various settings shared across all layouts
 	--[[----------------------------------
@@ -1855,6 +1858,7 @@ local function SetupLayout(layout, noDataReset)
 			E.db.unitframe.units.target.buffs.spacing = 2
 			E.db.unitframe.units.target.buffs.attachTo = "FRAME"
 			E.db.unitframe.units.target.buffs.anchorPoint = "TOPLEFT"
+			E.db.unitframe.units.target.buffs.growthX = "RIGHT" -- This was changed at some point, fixing this for 1.10 release
 			E.db.unitframe.units.target.buffs.priority = ""
 
 			E.db.unitframe.units.target.castbar.enable = true

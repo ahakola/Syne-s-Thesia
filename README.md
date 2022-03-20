@@ -15,7 +15,7 @@ This isn't 1:1 recreation of the *Syne's Edit*, since there has been ton of new 
 
 File | Game Version | Minimum ElvUI version
 --- | --- | ---
-`Syne's Thesia 1.9.zip` | 9.2.0 | 12.60
+`Syne's Thesia 1.9.zip -> Syne's Thesia 1.10.zip` | 9.2.0 | 12.60
 `Syne's Thesia 1.7.zip -> Syne's Thesia 1.8.zip` | 9.1.5 | 12.00
 `Syne's Thesia 1.3.zip -> Syne's Thesia 1.6.zip` | 9.1.0 | 12.00
 `Syne's Thesia 1.2.zip` | 9.0.2 | 12.00
