@@ -12,6 +12,7 @@ Syne's Thesia
 
 ## Changelog
 
+- 1.11 - 9.2.5 .toc bump
 - 1.10 - Fix "valuecolor" being set to RBG instead of RGB when using Class-coloring.
 - 1.9 - 9.2.0 .toc bump and fix the installation once again (not an error, but this time ElvUI 12.60 changed things around)
 - 1.8 - Fix the Stack-button related errors with Bank

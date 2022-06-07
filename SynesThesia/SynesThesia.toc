@@ -1,6 +1,6 @@
-## Interface: 90200
+## Interface: 90205
 ## Author: ahak
-## Version: 1.10
+## Version: 1.11
 ## Title: |cff1784d1Syne's|r Thesia
 ## Notes: External edit to replicate the looks of Syne's Edit (of TukUI). Requires ElvUI!
 ## RequiredDeps: ElvUI
