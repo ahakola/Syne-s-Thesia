@@ -16,6 +16,7 @@ P["SY"] = {
 		["recountHack"] = true,			-- I have problems with Recount staying hidden with ElvUI+AddOnSkins autohide, this is a hack to fix it.
 		["altPlayerDebuffs"] = false,		-- enable alternative-style on player debuffs
 		["darkTheme"] = false,				-- dark or light theme
+		["dontChangeFonts"] = false,		-- Don't update fonts incase someone wants to use their own fonts
 	},
 	["unitframes"] = {
 		-- general options

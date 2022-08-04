@@ -12,6 +12,7 @@ Syne's Thesia
 
 ## Changelog
 
+- 1.12 - Add option to prevent Syne's Thesia from overriding your ElvUI font settings
 - 1.11 - 9.2.5 .toc bump
 - 1.10 - Fix "valuecolor" being set to RBG instead of RGB when using Class-coloring.
 - 1.9 - 9.2.0 .toc bump and fix the installation once again (not an error, but this time ElvUI 12.60 changed things around)

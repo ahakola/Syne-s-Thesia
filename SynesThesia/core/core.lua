@@ -116,13 +116,13 @@ function SY:UpdateBlizzardFonts()
 	local CHAT		= SY.media.chat
 	local TIP		= SY.media.tooltip	
 
-	UIDROPDOWNMENU_DEFAULT_TEXT_HEIGHT = 12
-	CHAT_FONT_HEIGHTS = { 12, 13, 14, 15, 16, 17, 18, 19, 20 }
+	_G.UIDROPDOWNMENU_DEFAULT_TEXT_HEIGHT = 12
+	_G.CHAT_FONT_HEIGHTS = { 12, 13, 14, 15, 16, 17, 18, 19, 20 }
 
-	UNIT_NAME_FONT		= NORMAL
-	NAMEPLATE_FONT		= NORMAL
-	DAMAGE_TEXT_FONT	= COMBAT
-	STANDARD_TEXT_FONT	= NORMAL
+	_G.UNIT_NAME_FONT		= NORMAL
+	_G.NAMEPLATE_FONT		= NORMAL
+	_G.DAMAGE_TEXT_FONT	= COMBAT
+	_G.STANDARD_TEXT_FONT	= NORMAL
 
 	-- Base fonts
 	SetFont(GameTooltipHeader,					NORMAL,	15*SY.raidscale, "OUTLINE")
@@ -181,8 +181,8 @@ end
 
 local blankTex = LSM:Fetch("border", SY.media.blank)
 function SY:CenterGradientH(f, w, h, a1, p, a2, x, y)
-	sh = E:Scale(h)
-	sw = E:Scale(w)
+	local sh = E:Scale(h)
+	local sw = E:Scale(w)
 	f:SetFrameLevel(1)
 	f:SetHeight(sh)
 	f:SetWidth(sw)
@@ -203,8 +203,8 @@ function SY:CenterGradientH(f, w, h, a1, p, a2, x, y)
 end
 
 function SY:CenterGradientV(f, w, h, a1, p, a2, x, y)
-	sh = E:Scale(h)
-	sw = E:Scale(w)
+	local sh = E:Scale(h)
+	local sw = E:Scale(w)
 	f:SetFrameLevel(1)
 	f:SetHeight(sh)
 	f:SetWidth(sw)
@@ -225,8 +225,8 @@ function SY:CenterGradientV(f, w, h, a1, p, a2, x, y)
 end
 
 function SY:LeftGradient(f, w, h, a1, p, a2, x, y)
-	sh = E:Scale(h)
-	sw = E:Scale(w)
+	local sh = E:Scale(h)
+	local sw = E:Scale(w)
 	f:SetFrameLevel(1)
 	f:SetHeight(sh)
 	f:SetWidth(sw)
@@ -240,8 +240,8 @@ function SY:LeftGradient(f, w, h, a1, p, a2, x, y)
 end
 
 function SY:RightGradient(f, w, h, a1, p, a2, x, y)
-	sh = E:Scale(h)
-	sw = E:Scale(w)
+	local sh = E:Scale(h)
+	local sw = E:Scale(w)
 	f:SetFrameLevel(1)
 	f:SetHeight(sh)
 	f:SetWidth(sw)
@@ -305,8 +305,8 @@ function SY:FixFontString(fontString, fontName, fontHeight, fontStyle)
 end
 
 function SY:StylePanel(f, w, h, a1, p, a2, x, y)
-	sh = E:Scale(h)
-	sw = E:Scale(w)
+	local sh = E:Scale(h)
+	local sw = E:Scale(w)
 	f:SetFrameLevel(1)
 	f:SetHeight(sh)
 	f:SetWidth(sw)
@@ -355,6 +355,12 @@ local function GeneralOptions()
 						end
 					end
 				end,
+			},
+			dontChangeFonts = {
+				order = 40,
+				type = "toggle",
+				name = L["Don't change Fonts"],
+				desc = L["Don't override font settings set in ElvUI Config."],
 			},
 			spacer = {
 				order = 100,

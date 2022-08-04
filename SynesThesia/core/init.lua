@@ -97,9 +97,11 @@ function SY:Initialize()
 
 	--Updates
 	SY:UpdateMedia()
-	SY:UpdateBlizzardFonts()
 	hooksecurefunc(E, "UpdateMedia", SY.UpdateMedia)
-	hooksecurefunc(E, "UpdateBlizzardFonts", SY.UpdateBlizzardFonts) -- Does this even work?
+	if not E.db.SY.general.dontChangeFonts then -- Skip if someone wants to use their own fonts
+		SY:UpdateBlizzardFonts()
+		hooksecurefunc(E, "UpdateBlizzardFonts", SY.UpdateBlizzardFonts) -- Does this even work?
+	end
 	
 	--Register plugin so options are properly inserted when config is loaded
 	EP:RegisterPlugin(addon, SY.InsertOptions)

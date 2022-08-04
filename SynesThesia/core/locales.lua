@@ -32,6 +32,8 @@ L["Buff Reminder"] = true
 L["This is now the new Inner Fire warning script for all armors/aspects of a class."] = true
 L["Recount fix"] = true
 L["This hack should fix the problem of Recount not showing up when it should."] = true
+L["Don't change Fonts"] = true
+L["Don't override font settings set in ElvUI Config."] = true
 -- Experimental
 L["Experimental"] = true
 for i = 1, 5 do
